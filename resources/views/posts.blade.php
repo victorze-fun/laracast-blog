@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<title>My blog</title>
-<link rel="stylesheet" href="/app.css">
+<x-layout>
+    @foreach ($posts as $post)
+        <article class="{{ $loop->even ? 'foo' : '' }}">
+            <h1>
+                <a href="/posts/{{ $post->slug }}">
+                    {{ $post->title }}
+                </a>
+            </h1>
 
-<body>
-    <?php foreach ($posts as $post): ?>
-    <article>
-        <h1>
-            <a href="/posts/<?= $post->slug ?>">
-                <?= $post->title ?>
-            </a>
-        </h1>
-
-        <div>
-            <?= $post->excerpt ?>
-        </div>
-    </article>
-    <?php endforeach; ?>
-</body>
+            <div>
+                {{ $post->excerpt }}
+            </div>
+        </article>
+    @endforeach
+</x-layout>
